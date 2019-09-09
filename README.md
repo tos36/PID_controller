@@ -47,15 +47,15 @@ The vehicle must successfully drive a lap around the track. No tire may leave th
 
 1. P parameter
 
-As p parameter get larger, the car reachs the target position sooner but this cause an overshoot. As p parameter get smaller, the overshoot calm down but response get slower.
+     As p parameter get larger, the car reachs the target position sooner but this cause an overshoot. As p parameter get smaller, the overshoot calm down but response get slower.
  
 2. D parameter
 
-D parameter helps the car to surpress an overshoot. However too high D parameter cause small hunting.
+     D parameter helps the car to surpress an overshoot. However too high D parameter cause small hunting.
 
 3. I parameter
 
-I parameter helps the car to surpress hunting or overshoot, but as this parameter get larger, the time to reach the target position get longer.
+      I parameter helps the car to surpress hunting or overshoot, but as this parameter get larger, the time to reach the target position get longer.
 
 ### How the final hyperparameters chosen
 
@@ -63,16 +63,16 @@ I chose the hyperparameters (P, I, D) as (0.17, 0.002, 1.5) with manual tuning. 
 
 1. P parameter tuning
 
- Firstly, I set I and D as 0 and change the P only to find enough p-gain. When P parameter exceed 0.1 the car start over shooting. The car completely overshoot whent P=0.2. I set P as 1.5 at this point.
+     Firstly, I set I and D as 0 and change the P only to find enough p-gain. When P parameter exceed 0.1 the car start over shooting. The car completely overshoot whent P=0.2. I set P as 1.5 at this point.
 
 2. D parameter tuning
 
- Then I introduce D parameter to surpress the overshooting. I set D as 0.8 at this point. The car can drive trough the course, but sometimes the responce is slow when it comes to a curve.
+     Then I introduce D parameter to surpress the overshooting. I set D as 0.8 at this point. The car can drive trough the course, but sometimes the responce is slow when it comes to a curve.
 
 3. P & D parameter tuning
 
- Next, I tuned P & D simulteniouslly to make the car to responce more quicklly. I set P as 0.17 and D as 1.5 at this point. The car can drive a cureve more smoothly, but there was a hunting when the car drive a straight road.
+     Next, I tuned P & D simulteniouslly to make the car to responce more quicklly. I set P as 0.17 and D as 1.5 at this point. The car can drive a cureve more smoothly, but there was a hunting when the car drive a straight road.
  
 4. I parameter tuning
 
- Finally, I introduced I parameter to surpress the hunting. I test with o.o1 and o.oo1. When I=0.01 the car get out of the road since the gain is too high. When I=0.001 the car drives nicely on the straight road. I set I parameter as 0.002 finally.
+     Finally, I introduced I parameter to surpress the hunting. I test with o.o1 and o.oo1. When I=0.01 the car get out of the road since the gain is too high. When I=0.001 the car drives nicely on the straight road. I set I parameter as 0.002 finally.
