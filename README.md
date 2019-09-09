@@ -37,62 +37,42 @@ Fellow students have put together a guide to Windows set-up for the project [her
 
 Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
 
-## Editor Settings
+## Requirements
 
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
+The vehicle must successfully drive a lap around the track. No tire may leave the drivable portion of the track surface. The car may not pop up onto ledges or roll over any surfaces that would otherwise be considered unsafe (if humans were in the vehicle).
 
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
+## Reflection
 
-## Code Style
+### Effect of PID parameters
 
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
+1. P parameter
 
-## Project Instructions and Rubric
+As p parameter get larger, the car reachs the target position sooner but this cause an overshoot. As p parameter get smaller, the overshoot calm down but response get slower.
+ 
+2. D parameter
 
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
+D parameter helps the car to surpress an overshoot. However too high D parameter cause small hunting.
 
-More information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/e8235395-22dd-4b87-88e0-d108c5e5bbf4/concepts/6a4d8d42-6a04-4aa6-b284-1697c0fd6562)
-for instructions and the project rubric.
+3. I parameter
 
-## Hints!
+I parameter helps the car to surpress hunting or overshoot, but as this parameter get larger, the time to reach the target position get longer.
 
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
+### How the final hyperparameters chosen
 
-## Call for IDE Profiles Pull Requests
+I chose the hyperparameters (P, I, D) as (0.17, 0.002, 1.5) with manual tuning. In this section I explain how I choose them.
 
-Help your fellow students!
+1. P parameter tuning
 
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
+ Firstly, I set I and D as 0 and change the P only to find enough p-gain. When P parameter exceed 0.1 the car start over shooting. The car completely overshoot whent P=0.2. I set P as 1.5 at this point.
 
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
+2. D parameter tuning
 
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
+ Then I introduce D parameter to surpress the overshooting. I set D as 0.8 at this point. The car can drive trough the course, but sometimes the responce is slow when it comes to a curve.
 
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
+3. P & D parameter tuning
 
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
+ Next, I tuned P & D simulteniouslly to make the car to responce more quicklly. I set P as 0.17 and D as 1.5 at this point. The car can drive a cureve more smoothly, but there was a hunting when the car drive a straight road.
+ 
+4. I parameter tuning
 
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
+ Finally, I introduced I parameter to surpress the hunting. I test with o.o1 and o.oo1. When I=0.01 the car get out of the road since the gain is too high. When I=0.001 the car drives nicely on the straight road. I set I parameter as 0.002 finally.
