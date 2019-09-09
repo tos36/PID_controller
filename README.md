@@ -55,7 +55,7 @@ The vehicle must successfully drive a lap around the track. No tire may leave th
 
 3. I parameter
 
-      I parameter helps the car to surpress hunting or overshoot, but as this parameter get larger, the time to reach the target position get longer.
+      I parameter helps the car to surpress hunting or overshoot. However as this parameter get larger, the time to reach the target position get longer.
 
 ### How the final hyperparameters chosen
 
